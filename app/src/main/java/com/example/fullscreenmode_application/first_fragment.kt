@@ -1,11 +1,18 @@
 package com.example.fullscreenmode_application
 
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,6 +38,7 @@ class first_fragment : Fragment() {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,10 +46,52 @@ class first_fragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_first_fragment, container, false)
 
-        val firstFragmentView: ConstraintLayout = view.findViewById(R.id.fragment_first_fragment)
-        firstFragmentView.setOnClickListener {
+        val backButton: TextView = view.findViewById(R.id.backButton)
+//        val drawable = backButton.background
+//        backButton.setTextColor(Color.parseColor("#ffffff"))
+//        if (backButton.visibility == View.VISIBLE){
+////            backButton.visibility = View.VISIBLE
+////            true
+//        }
+        backButton.setOnTouchListener {_, _ ->
+            backButton.setBackgroundColor(Color.parseColor("#ffffff"))
+//            val drawable = backButton.background as GradientDrawable
+//            drawable.setStroke(1, ContextCompat.getColor(requireContext(), R.color.white))
+//
+//            backButton.setTextColor(Color.parseColor("#ffffff"))
+////            backButton.visibility = View.VISIBLE
+            true
+        }
+
+        val okButton: TextView = view.findViewById(R.id.okButton)
+        okButton.setOnClickListener {
             findNavController().navigate(R.id.action_first_fragment_to_secondFragment)
         }
+//        okButton.setOnHoverListener {_, _ ->
+//            okButton.visibility = View.VISIBLE
+//            true
+//        }
+//
+//        if(okButton.visibility == View.VISIBLE){
+//            okButton.setOnClickListener {
+//                findNavController().navigate(R.id.action_first_fragment_to_secondFragment)
+//            }
+//        } else if (okButton.visibility == View.GONE || okButton.visibility == View.INVISIBLE){
+//            Log.d("Not Work", "Button did not show on the screen")
+//        }
+//
+//        val bottomNavigation: LinearLayout = view.findViewById(R.id.bottomNavigation)
+//        bottomNavigation.setOnHoverListener { _, _ ->
+//            bottomNavigation.visibility = View.VISIBLE
+//            backButton.visibility = View.VISIBLE
+//            okButton.visibility = View.VISIBLE
+//            true
+//        }
+//
+//        val firstFragmentView: ConstraintLayout = view.findViewById(R.id.fragment_first_fragment)
+//        firstFragmentView.setOnClickListener {
+//            findNavController().navigate(R.id.action_first_fragment_to_secondFragment)
+//        }
 
         return view
     }

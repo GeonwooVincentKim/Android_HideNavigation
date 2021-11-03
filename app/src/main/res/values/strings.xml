@@ -4,4 +4,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="stringFirstFragmentText">First Fragment Text</string>
     <string name="stringSecondFragment">Second Fragment</string>
+    <string name="stringBack">Back</string>
+    <string name="stringGO">GO</string>
+    <string name="stringToastExample">Toast</string>
+
 </resources>

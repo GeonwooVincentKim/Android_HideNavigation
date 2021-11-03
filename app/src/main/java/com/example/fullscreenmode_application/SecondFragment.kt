@@ -1,12 +1,18 @@
 package com.example.fullscreenmode_application
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,12 +44,40 @@ class SecondFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_second, container, false)
 
+        createToast()
+
         val secondFragmentView: ConstraintLayout = view.findViewById(R.id.fragment_second_fragment)
         secondFragmentView.setOnClickListener {
             findNavController().navigate(R.id.action_secondFragment_to_first_fragment)
         }
 
         return view
+    }
+
+    @SuppressLint("InflateParams", "SetTextI18n")
+    private fun createToast(){
+        val view1 = layoutInflater.inflate(R.layout.toast_border, null)
+        view1.setBackgroundResource(android.R.drawable.toast_frame)
+        val toastText: TextView = view1.findViewById(R.id.toastText)
+
+        val stringResult = "Very Good"
+        toastText.text = stringResult.lowercase(Locale.getDefault())
+
+        val toast = Toast(this.activity).apply {
+            duration = Toast.LENGTH_LONG
+            setGravity(Gravity.NO_GRAVITY, 0, 500)
+            view = view1
+        }
+
+        val countDownTimer = object : CountDownTimer(5000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {}
+            override fun onFinish() {
+                toast.cancel()
+            }
+        }
+
+        toast.show()
+        countDownTimer.start()
     }
 
     companion object {
