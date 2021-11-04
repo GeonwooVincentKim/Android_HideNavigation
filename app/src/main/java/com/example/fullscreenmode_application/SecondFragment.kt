@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -44,10 +45,13 @@ class SecondFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_second, container, false)
 
-        createToast()
+//        createToast()
+
 
         val secondFragmentView: ConstraintLayout = view.findViewById(R.id.fragment_second_fragment)
         secondFragmentView.setOnClickListener {
+            val snack = Snackbar.make(it,"This is a simple Snackbar", Snackbar.LENGTH_LONG)
+            snack.show()
             findNavController().navigate(R.id.action_secondFragment_to_first_fragment)
         }
 
