@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import org.w3c.dom.Text
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -47,67 +49,33 @@ class SecondFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_second, container, false)
 
-//        createToast()
-
-//        val customSnackBarView = layoutInflater.inflate(R.layout.cus)
 
         val secondFragmentView: ConstraintLayout = view.findViewById(R.id.fragment_second_fragment)
-        secondFragmentView.setOnClickListener {
-            createSnackBar(it)
+        val secondFragmentButton: TextView = view.findViewById(R.id.secondFragmentButton)
+
+        secondFragmentButton.setOnClickListener {
+            val customSnackBar = Snackbar.make(secondFragmentView, "", Snackbar.LENGTH_LONG)
+            val layout = customSnackBar.view as Snackbar.SnackbarLayout
+
+            val customSnackBarView = layoutInflater.inflate(
+                R.layout.custom_snack_view,
+                view.findViewById<View>(R.id.custom_snackBar_container) as? ViewGroup
+            )
+
+            val textView = customSnackBarView.findViewById<TextView>(R.id.customSnackText)
+
+            textView.text = resources.getText(R.string.stringExampleSnackView)
+            layout.setPadding(0, 0, 0, 0)
+
+            layout.addView(customSnackBarView, 0)
+            customSnackBar.duration = 4000
+            customSnackBar.show()
+//            createSnackBar(it)
 //            val customSnackBar: Snackbar = Snackbar.make(con)
 //            findNavController().navigate(R.id.action_secondFragment_to_first_fragment)
         }
 
         return view
-    }
-
-    @SuppressLint("InflateParams")
-    private fun createSnackBar(it: View) {
-//        val toastText: TextView = it.findViewById(R.id.toastText)
-//
-//        val stringResult = "Very Good"
-//        toastText.text = stringResult.lowercase(Locale.getDefault())
-        val view1 = layoutInflater.inflate(R.layout.toast_border, null)
-        view1.setBackgroundResource(android.R.drawable.toast_frame)
-        view1.foregroundGravity = Gravity.CENTER
-        val toastText: TextView = view1.findViewById(R.id.toastText)
-
-        toastText.textSize = 20F
-//        toastText.setTextColor(Color.BLACK)
-
-        val stringResult = "Very Good"
-        toastText.text = stringResult.lowercase(Locale.getDefault())
-
-
-//        val snack = Snackbar.make(it, "This is a simple Snackbar", Snackbar.LENGTH_LONG)
-        val snack = Snackbar.make(it, toastText.text, Snackbar.LENGTH_LONG)
-//            .setBackgroundTint(Color.GRAY)
-//            .setTextColor(Color.WHITE)
-
-        val snackBarView: View = snack.view
-        snackBarView.setBackgroundColor(Color.YELLOW)
-        snack.setTextColor(Color.BLACK)
-        snackBarView.textAlignment = View.TEXT_ALIGNMENT_CENTER
-
-//        val toastText: TextView = snackBarView.findViewById(R.id.toastText)
-//        toastText.textAlignment = View.TEXT_ALIGNMENT_CENTER
-//        toastText.textSize = 20F
-////        toastText.setTextColor(Color.BLACK)
-//
-//        val stringResult = "Very Good"
-//        toastText.text = stringResult.lowercase(Locale.getDefault())
-
-//        val countDownTimer = object : CountDownTimer(5000, 1000) {
-//            override fun onTick(millisUntilFinished: Long) {}
-//            override fun onFinish() {
-//            }
-//        }
-//        toastText.textAlignment = View.TEXT_ALIGNMENT_CENTER
-
-//        toastText.textAlignment = View.TEXT_ALIGNMENT_CENTER
-        snack.duration = 4000
-
-        snack.show()
     }
 
     @SuppressLint("InflateParams", "SetTextI18n")
