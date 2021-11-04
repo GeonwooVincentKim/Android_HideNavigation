@@ -53,28 +53,35 @@ class SecondFragment : Fragment() {
         val secondFragmentButton: TextView = view.findViewById(R.id.secondFragmentButton)
 
         secondFragmentButton.setOnClickListener {
-            val customSnackBar = Snackbar.make(secondFragmentView, "", Snackbar.LENGTH_LONG)
-            val layout = customSnackBar.view as Snackbar.SnackbarLayout
-
-            val customSnackBarView = layoutInflater.inflate(
-                R.layout.custom_snack_view,
-                view.findViewById<View>(R.id.custom_snackBar_container) as? ViewGroup
-            )
-
-            val textView = customSnackBarView.findViewById<TextView>(R.id.customSnackText)
-
-            textView.text = resources.getText(R.string.stringExampleSnackView)
-            layout.setPadding(0, 0, 0, 0)
-
-            layout.addView(customSnackBarView, 0)
-            customSnackBar.duration = 4000
-            customSnackBar.show()
+            customSnackBar(secondFragmentView, view)
 //            createSnackBar(it)
 //            val customSnackBar: Snackbar = Snackbar.make(con)
 //            findNavController().navigate(R.id.action_secondFragment_to_first_fragment)
         }
 
         return view
+    }
+
+    private fun customSnackBar(
+        secondFragmentView: ConstraintLayout,
+        view: View
+    ) {
+        val customSnackBar = Snackbar.make(secondFragmentView, "", Snackbar.LENGTH_LONG)
+        val layout = customSnackBar.view as Snackbar.SnackbarLayout
+
+        val customSnackBarView = layoutInflater.inflate(
+            R.layout.custom_snack_view,
+            view.findViewById<View>(R.id.custom_snackBar_container) as? ViewGroup
+        )
+
+        val textView = customSnackBarView.findViewById<TextView>(R.id.customSnackText)
+
+        textView.text = resources.getText(R.string.stringExampleSnackView)
+        layout.setPadding(0, 0, 0, 0)
+
+        layout.addView(customSnackBarView, 0)
+        customSnackBar.duration = 4000
+        customSnackBar.show()
     }
 
     @SuppressLint("InflateParams", "SetTextI18n")
