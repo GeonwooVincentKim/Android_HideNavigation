@@ -49,7 +49,6 @@ class SecondFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_second, container, false)
 
-
         val secondFragmentView: ConstraintLayout = view.findViewById(R.id.fragment_second_fragment)
         val secondFragmentButton: TextView = view.findViewById(R.id.secondFragmentButton)
 
