@@ -76,7 +76,9 @@ class SecondFragment : Fragment() {
 
         val textView = customSnackBarView.findViewById<TextView>(R.id.customSnackText)
 
-        textView.text = resources.getText(R.string.stringExampleSnackView)
+//        textView.text = resources.getText(R.string.stringExampleSnackView)
+        val stringResult = "Very Good"
+        textView.text = stringResult.lowercase(Locale.getDefault())
         layout.setPadding(0, 0, 0, 0)
 
         layout.addView(customSnackBarView, 0)
