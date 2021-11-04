@@ -7,5 +7,6 @@
     <string name="stringBack">Back</string>
     <string name="stringGO">GO</string>
     <string name="stringToastExample">Toast</string>
+    <string name="stringExampleSnackView">Snack View Example</string>
 
 </resources>
